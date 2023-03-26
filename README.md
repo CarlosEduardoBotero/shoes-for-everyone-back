@@ -2,6 +2,8 @@
 
 ### 📖 Description
 
+  + [ ] [Swagger](https://TODO)
+
 ### ❤️ Available on
 
 https://api-shoes-ecommerce.onrender.com
@@ -28,7 +30,7 @@ cd shoes-for-everyone-back
 
 npm install
 
-cd api-ecommerce
+cd api
 
 # development
 npm run start
@@ -50,25 +52,41 @@ npm run test:cov
 
 ### 📦 Production environment
 
-### Documentation
+### 📝 Documentation
 
 **Useful commands**
 
-    ```bash
-    # CRUD generator:
-    npx @nestjs/cli g resource [name]
-    
-### ⚙️ Initial project setup
-Install nestjs cli locally and create a new project
-
 ```bash
-npx @nestjs/cli new  api-ecommerce
+# CRUD generator:
+npx @nestjs/cli g resource [name]
 ```
 
-Create health check controller
+### ⚙️ Initial project setup
+- Install nestjs cli locally and create a new project
+
+```bash
+npx @nestjs/cli new  api
+```
+
+- Create health check controller
 
 ```bash
 npx @nestjs/cli generate controller health-check
 ```
+
+- Install database dependencies
+
+```bash
+npm install --save @nestjs/typeorm typeorm pg
+```
+- Install library to manage environment variables
+
+```bash
+npm install --save dotenv
+```
+
+### Contributors
+<a href="https://github.com/CarlosEduardoBotero/shoes-for-everyone-back/graphs/contributors"><img src=""/></a>
+
 
 ### License
