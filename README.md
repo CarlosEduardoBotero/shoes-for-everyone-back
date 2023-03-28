@@ -58,7 +58,25 @@ npm run test:cov
 
 ```bash
 # CRUD generator:
-npx @nestjs/cli g resource [name]
+npx @nestjs/cli g resource [path/name]
+
+# Generates a new migration file with sql needs to be executed to update schema
+npm run migration:generate src/migrations/example/create-example-table
+
+# create a new empty migration file
+npm run migration:create ./src/migrations/example/create-example-table
+
+# Run all migrations
+npm run migration:run
+
+# Run any SQL query you want directly in the database
+npm run query "SELECT version();"
+
+# Show all migrations and whether they have been run or not
+npm run migration:show
+
+# Revert the last migration. Run it several times to revert multiple migrations
+npm run migration:revert
 ```
 
 ### ⚙️ Initial project setup
@@ -83,6 +101,12 @@ npm install --save @nestjs/typeorm typeorm pg
 
 ```bash
 npm install --save dotenv
+```
+
+- Unique string ID generator
+https://github.com/ai/nanoid#install
+```bash
+npm install --save nanoid@3
 ```
 
 ### Contributors
