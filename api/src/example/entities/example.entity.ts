@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import { BeforeInsert, Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'examples', schema: 'example' })
-export class Example {
+export class ExampleEntity {
   @PrimaryColumn({ length: 16 })
   id: string;
 
