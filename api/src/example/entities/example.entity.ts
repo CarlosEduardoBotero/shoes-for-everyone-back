@@ -1,29 +1,32 @@
-// import { nanoid } from "nanoid";
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { nanoid } from 'nanoid';
+import { BeforeInsert, Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'examples', schema: 'example' })
 export class Example {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ length: 16 })
   id: string;
 
   @Column({ length: 32 })
   name: string;
 
-  @Column({ length: 32 })
+  @Column({
+    length: 128,
+    nullable: true,
+  })
   description: string;
-  
+
   /*
    * Create and Update Date Columns
    */
 
-//   @CreateDateColumn({ type: 'timestamp' })
-//   public createdAt!: Date;
+  //   @CreateDateColumn({ type: 'timestamp' })
+  //   public createdAt!: Date;
 
-//   @UpdateDateColumn({ type: 'timestamp' })
-//   public updatedAt!: Date;
+  //   @UpdateDateColumn({ type: 'timestamp' })
+  //   public updatedAt!: Date;
 
-  // @BeforeInsert()
-  // async setId() {
-  //   this.id = `exa_${nanoid(10)}`;
-  // }
+  @BeforeInsert()
+  private async setId() {
+    this.id = `exa_${nanoid(12)}`;
+  }
 }
