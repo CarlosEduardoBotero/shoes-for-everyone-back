@@ -11,7 +11,9 @@ export class ExampleService {
   ) {}
 
   create(createExampleDto: CreateExampleDto) {
-    return 'This action adds a new example';
+    // create a new entity to run BD trigger
+    const exampleToSave = this.exampleRepository.create(createExampleDto);
+    return this.exampleRepository.save(exampleToSave);
   }
 
   findAll() {
