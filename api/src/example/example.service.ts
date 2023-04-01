@@ -20,8 +20,8 @@ export class ExampleService {
     return this.exampleRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} example`;
+  async findOne(id: string) {
+    return await this.exampleRepository.findOrFailById(id);
   }
 
   async update(id: string, updateExampleDto: UpdateExampleDto) {
