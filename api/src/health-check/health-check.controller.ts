@@ -1,7 +1,10 @@
-import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Res, VERSION_NEUTRAL } from '@nestjs/common';
 import { Response } from 'express';
 
-@Controller('health')
+@Controller({
+  path:'health',
+  version: VERSION_NEUTRAL,
+})
 export class HealthCheckController {
   @Get()
   async healthCheck(@Res({ passthrough: true }) res: Response) {
