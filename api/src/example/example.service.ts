@@ -24,8 +24,15 @@ export class ExampleService {
     return `This action returns a #${id} example`;
   }
 
-  update(id: number, updateExampleDto: UpdateExampleDto) {
-    return `This action updates a #${id} example`;
+  async update(id: string, updateExampleDto: UpdateExampleDto) {
+
+    const example = await this.exampleRepository.findOrFailById(id);
+    // If example ID exists, update entity
+    Object.entries(updateExampleDto).forEach(([key, value]) => {
+      example[key] = value;
+    });
+
+    return this.exampleRepository.save(example);
   }
 
   remove(id: number) {

@@ -1,3 +1,4 @@
+import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ExampleEntity } from './entities/example.entity';
@@ -17,5 +18,11 @@ export class ExampleRepository extends Repository<ExampleEntity> {
         // could warn that exampleRepository is not used though. Up to you to use either of the 2 methods
     }
 
-    // other custom methods...
+    async findOrFailById(id: string): Promise<ExampleEntity> {
+        try {
+            return await this.exampleRepository.findOneByOrFail({ id });
+        } catch (EntityNotFoundError) {
+            throw new NotFoundException(`ID não encontrado`);
+        }
+    }
 }
