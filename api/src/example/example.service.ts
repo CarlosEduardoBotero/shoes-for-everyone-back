@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { HelpersService } from 'src/helpers/helpers.service';
 import { CreateExampleDto } from './dto/create-example.dto';
 import { UpdateExampleDto } from './dto/update-example.dto';
 import { ExampleRepository } from './example.repository';
@@ -7,7 +8,8 @@ import { ExampleRepository } from './example.repository';
 export class ExampleService {
   // inject repository here
   constructor(
-    private readonly exampleRepository: ExampleRepository
+    private readonly exampleRepository: ExampleRepository,
+    private readonly helpersService: HelpersService,
   ) {}
 
   create(createExampleDto: CreateExampleDto) {
@@ -21,11 +23,12 @@ export class ExampleService {
   }
 
   async findOne(id: string) {
+    this.helpersService.checkIdPrefix(id, 'exa_');
     return await this.exampleRepository.findOrFailById(id);
   }
 
   async update(id: string, updateExampleDto: UpdateExampleDto) {
-
+    this.helpersService.checkIdPrefix(id, 'exa_');
     const example = await this.exampleRepository.findOrFailById(id);
     // If example ID exists, update entity
     Object.entries(updateExampleDto).forEach(([key, value]) => {
