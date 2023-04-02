@@ -38,7 +38,7 @@ export class ExampleService {
     return this.exampleRepository.save(example);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} example`;
   }
 }
