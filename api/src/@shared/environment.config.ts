@@ -2,6 +2,7 @@ require('dotenv').config();
 
 export const environment = {
   dataBase: dataBase(),
+  corsOptions: corsOptions(),
 };
 
 function dataBase() {
@@ -19,5 +20,12 @@ function dataBase() {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
     };
+  }
+}
+
+function corsOptions() {
+  return {
+    "origin": process.env.CORS_ORIGIN || ['http://localhost:3000'],
+    "methods": "GET,PATCH,POST",
   }
 }
