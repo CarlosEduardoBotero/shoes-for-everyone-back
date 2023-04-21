@@ -8,6 +8,14 @@ import { ExampleController } from './apps/examples/example.controller';
 import { ExampleRepository } from './apps/examples/example.repository';
 import { ExampleService } from './apps/examples/example.service';
 import { HelpersService } from './helpers/helpers.service';
+import { UsersController } from './apps/users/controllers/users.controller';
+import { UsersService } from './apps/users/services/users.service';
+import { UserEntity } from './apps/users/entities/user.entity';
+import { UsersRepository } from './apps/users/repositories/users.repository';
+import { CreateUserServiceImpl } from './apps/users/services-impl/user.create.service-impl';
+import { GetAllUserServiceImpl } from './apps/users/services-impl/user.get-all.service-impl';
+import { GetUserServiceImpl } from './apps/users/services-impl/user.get.service-impl';
+import { UpdateUserServiceImpl } from './apps/users/services-impl/user.update.service-impl';
 
 @Module({
   imports: [
@@ -16,16 +24,26 @@ import { HelpersService } from './helpers/helpers.service';
       inject: [ConfigService],
       useFactory: () => databaseConfig(),
     }),
-    TypeOrmModule.forFeature([ExampleEntity])
+    TypeOrmModule.forFeature([
+      ExampleEntity,
+      UserEntity
+    ])
   ],
   controllers: [
     HealthCheckController,
-    ExampleController
+    ExampleController,
+    UsersController
   ],
   providers: [
     HelpersService,
     ExampleRepository,
-    ExampleService
+    ExampleService,
+    UsersService,
+    UsersRepository,
+    CreateUserServiceImpl,
+    GetAllUserServiceImpl,
+    GetUserServiceImpl,
+    UpdateUserServiceImpl
   ]
 })
 export class AppModule {}
