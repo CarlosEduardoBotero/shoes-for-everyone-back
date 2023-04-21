@@ -6,14 +6,13 @@ import { GetAllUserServiceImpl } from '../services-impl/user.get-all.service-imp
 import { GetUserServiceImpl } from '../services-impl/user.get.service-impl';
 import { UpdateUserServiceImpl } from '../services-impl/user.update.service-impl';
 
-
 @Injectable()
 export class UsersService {
   constructor(
     private readonly createUserServiceImpl: CreateUserServiceImpl,
     private readonly getAllUserServiceImpl: GetAllUserServiceImpl,
     private readonly getUserServiceImpl: GetUserServiceImpl,
-    private readonly updateUserServiceImpl: UpdateUserServiceImpl
+    private readonly updateUserServiceImpl: UpdateUserServiceImpl,
   ) {}
 
   async create(createUserDto: CreateUserDto) {

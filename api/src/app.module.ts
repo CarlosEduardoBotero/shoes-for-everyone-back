@@ -51,7 +51,7 @@ import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example
     CreateUserServiceImpl,
     GetAllUserServiceImpl,
     GetUserServiceImpl,
-    UpdateUserServiceImpl
-  ]
+    UpdateUserServiceImpl,
+  ],
 })
 export class AppModule {}

@@ -1,4 +1,6 @@
-require('dotenv').config();
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 export const environment = {
   dataBase: dataBase(),
@@ -25,7 +27,7 @@ function dataBase() {
 
 function corsOptions() {
   return {
-    "origin": process.env.CORS_ORIGIN || ['http://localhost:3000'],
-    "methods": "GET,PATCH,POST",
-  }
+    origin: process.env.CORS_ORIGIN || ['http://localhost:3000'],
+    methods: 'GET,PATCH,POST',
+  };
 }

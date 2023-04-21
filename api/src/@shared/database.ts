@@ -2,16 +2,16 @@ import { environment } from './environment.config';
 
 export function databaseConfig() {
   const db_config = {
-    "type": 'postgres' as 'postgres',
-    "logging": true,
-    "entities": ['dist/**/*.entity{.ts,.js}'],
-    "migrationsTableName": 'migrations',
-    "migrations": ['dist/migrations/**/*{.ts,.js}'],
-    "cli": {
-      "migrationsDir": 'src/migrations',
+    type: 'postgres' as 'postgres',
+    logging: true,
+    entities: ['dist/**/*.entity{.ts,.js}'],
+    migrationsTableName: 'migrations',
+    migrations: ['dist/migrations/**/*{.ts,.js}'],
+    cli: {
+      migrationsDir: 'src/migrations',
     },
-    "subscribers": [],
-    "synchronize": false,
+    subscribers: [],
+    synchronize: false,
   };
   // Add to db_config database connection according to received env vars
   if (environment.dataBase.url !== undefined) {

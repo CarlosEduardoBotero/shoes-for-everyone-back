@@ -83,7 +83,10 @@ export class ExampleController {
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiNotFoundResponse({ description: 'Resource not found' })
-  async update(@Param('id') id: string, @Body() updateExampleDto: UpdateExampleDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateExampleDto: UpdateExampleDto,
+  ) {
     return await this.exampleService.update(id, updateExampleDto);
   }
 

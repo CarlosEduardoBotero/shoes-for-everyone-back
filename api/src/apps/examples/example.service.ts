@@ -13,7 +13,7 @@ export class ExampleService {
     private readonly createExampleServiceImpl: CreateExampleServiceImpl,
     private readonly getAllExampleServiceImpl: GetAllExampleServiceImpl,
     private readonly getExampleServiceImpl: GetExampleServiceImpl,
-    private readonly updateExamplerServiceImpl: UpdateExamplerServiceImpl
+    private readonly updateExamplerServiceImpl: UpdateExamplerServiceImpl,
   ) {}
 
   async create(createExampleDto: CreateExampleDto) {
