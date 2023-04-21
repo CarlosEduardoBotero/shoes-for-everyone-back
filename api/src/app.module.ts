@@ -16,6 +16,10 @@ import { CreateUserServiceImpl } from './apps/users/services-impl/user.create.se
 import { GetAllUserServiceImpl } from './apps/users/services-impl/user.get-all.service-impl';
 import { GetUserServiceImpl } from './apps/users/services-impl/user.get.service-impl';
 import { UpdateUserServiceImpl } from './apps/users/services-impl/user.update.service-impl';
+import { CreateExampleServiceImpl } from './apps/examples/services-impl/example.create.service-impl';
+import { GetAllExampleServiceImpl } from './apps/examples/services-impl/example.get-all.service-impl';
+import { GetExampleServiceImpl } from './apps/examples/services-impl/example.get.service-impl';
+import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example.update.service-impl';
 
 @Module({
   imports: [
@@ -38,6 +42,10 @@ import { UpdateUserServiceImpl } from './apps/users/services-impl/user.update.se
     HelpersService,
     ExampleRepository,
     ExampleService,
+    CreateExampleServiceImpl,
+    GetAllExampleServiceImpl,
+    GetExampleServiceImpl,
+    UpdateExamplerServiceImpl,
     UsersService,
     UsersRepository,
     CreateUserServiceImpl,

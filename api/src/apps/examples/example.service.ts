@@ -1,41 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { HelpersService } from 'src/helpers/helpers.service';
 import { CreateExampleDto } from './dto/create-example.dto';
 import { UpdateExampleDto } from './dto/update-example.dto';
-import { ExampleRepository } from './example.repository';
+import { CreateExampleServiceImpl } from './services-impl/example.create.service-impl';
+import { GetAllExampleServiceImpl } from './services-impl/example.get-all.service-impl';
+import { GetExampleServiceImpl } from './services-impl/example.get.service-impl';
+import { UpdateExamplerServiceImpl } from './services-impl/example.update.service-impl';
 
 @Injectable()
 export class ExampleService {
   // inject repository here
   constructor(
-    private readonly exampleRepository: ExampleRepository,
-    private readonly helpersService: HelpersService,
+    private readonly createExampleServiceImpl: CreateExampleServiceImpl,
+    private readonly getAllExampleServiceImpl: GetAllExampleServiceImpl,
+    private readonly getExampleServiceImpl: GetExampleServiceImpl,
+    private readonly updateExamplerServiceImpl: UpdateExamplerServiceImpl
   ) {}
 
-  create(createExampleDto: CreateExampleDto) {
-    // create a new entity to run BD trigger
-    const exampleToSave = this.exampleRepository.create(createExampleDto);
-    return this.exampleRepository.save(exampleToSave);
+  async create(createExampleDto: CreateExampleDto) {
+    return this.createExampleServiceImpl.execute(createExampleDto);
   }
 
-  findAll() {
-    return this.exampleRepository.find();
+  async findAll() {
+    return this.getAllExampleServiceImpl.execute();
   }
 
   async findOne(id: string) {
-    this.helpersService.checkIdPrefix(id, 'exa_');
-    return await this.exampleRepository.findOrFailById(id);
+    return await this.getExampleServiceImpl.execute(id);
   }
 
   async update(id: string, updateExampleDto: UpdateExampleDto) {
-    this.helpersService.checkIdPrefix(id, 'exa_');
-    const example = await this.exampleRepository.findOrFailById(id);
-    // If example ID exists, update entity
-    Object.entries(updateExampleDto).forEach(([key, value]) => {
-      example[key] = value;
-    });
-
-    return this.exampleRepository.save(example);
+    return this.updateExamplerServiceImpl.execute(id, updateExampleDto);
   }
 
   remove(id: string) {
