@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HealthCheckController } from './health-check/health-check.controller';
+import { HealthCheckController } from './apps/health-check/health-check.controller';
 import { databaseConfig } from './@shared/database';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ExampleModule } from './example/example.module';
+import { ExampleEntity } from './apps/examples/entities/example.entity';
+import { ExampleController } from './apps/examples/example.controller';
+import { ExampleRepository } from './apps/examples/example.repository';
+import { ExampleService } from './apps/examples/example.service';
+import { HelpersService } from './helpers/helpers.service';
 
 @Module({
   imports: [
@@ -12,9 +16,16 @@ import { ExampleModule } from './example/example.module';
       inject: [ConfigService],
       useFactory: () => databaseConfig(),
     }),
-    ExampleModule,
+    TypeOrmModule.forFeature([ExampleEntity])
   ],
-  controllers: [HealthCheckController],
-  providers: [],
+  controllers: [
+    HealthCheckController,
+    ExampleController
+  ],
+  providers: [
+    HelpersService,
+    ExampleRepository,
+    ExampleService
+  ]
 })
 export class AppModule {}
