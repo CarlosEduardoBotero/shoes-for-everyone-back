@@ -9,7 +9,7 @@ export class CreateUserServiceImpl {
         private readonly usersRepository: UsersRepository
     ) {}
 
-    execute(createUserDto: CreateUserDto) {
-        return 'This action adds a new user';
+    async execute(createUserDto: CreateUserDto) {
+        return await 'This action adds a new user';
     }
 }

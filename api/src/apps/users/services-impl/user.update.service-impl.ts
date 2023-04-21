@@ -9,7 +9,7 @@ export class UpdateUserServiceImpl {
         private readonly usersRepository: UsersRepository
     ) {}
 
-    execute(id: string, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} user`;
+    async execute(id: string, updateUserDto: UpdateUserDto) {
+        return await `This action updates a #${id} user`;
     }
 }

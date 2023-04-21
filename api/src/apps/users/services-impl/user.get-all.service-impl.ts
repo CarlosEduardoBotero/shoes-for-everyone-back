@@ -8,7 +8,7 @@ export class GetAllUserServiceImpl {
         private readonly usersRepository: UsersRepository
     ) {}
 
-    execute() {
-        return 'This action returns all users';
+    async execute() {
+        return await 'This action returns all users';
     }
 }

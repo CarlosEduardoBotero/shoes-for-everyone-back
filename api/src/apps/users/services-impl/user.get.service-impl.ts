@@ -8,7 +8,7 @@ export class GetUserServiceImpl {
         private readonly usersRepository: UsersRepository
     ) {}
 
-    execute(id: string) {
-        return `This action returns a #${id} user`;
+    async execute(id: string) {
+        return await `This action returns a #${id} user`;
     }
 }

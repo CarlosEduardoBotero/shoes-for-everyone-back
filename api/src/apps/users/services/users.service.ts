@@ -16,19 +16,19 @@ export class UsersService {
     private readonly updateUserServiceImpl: UpdateUserServiceImpl
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.createUserServiceImpl.execute(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    return await this.createUserServiceImpl.execute(createUserDto);
   }
 
-  findAll() {
-    return this.getAllUserServiceImpl.execute();
+  async findAll() {
+    return await this.getAllUserServiceImpl.execute();
   }
 
-  findOne(id: string) {
-    return this.getUserServiceImpl.execute(id);
+  async findOne(id: string) {
+    return await this.getUserServiceImpl.execute(id);
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return this.updateUserServiceImpl.execute(id, updateUserDto);
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    return await this.updateUserServiceImpl.execute(id, updateUserDto);
   }
 }
