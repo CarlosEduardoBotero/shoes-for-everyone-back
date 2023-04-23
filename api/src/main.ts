@@ -15,10 +15,10 @@ async function bootstrap() {
   });
   // Swagger config
   const config = new DocumentBuilder()
-  .setTitle('Shoes for everyone')
-  .setDescription('Shoes for everyone description')
-  .setVersion('1.0')
-  .build();
+    .setTitle('Shoes for everyone')
+    .setDescription('Shoes for everyone description')
+    .setVersion('1.0')
+    .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 

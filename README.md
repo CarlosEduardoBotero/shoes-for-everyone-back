@@ -28,9 +28,15 @@ git clone (this repo)
 
 cd shoes-for-everyone-back
 
+cd api
+
 npm install
 
-cd api
+# copy example _.env to .env
+cp _.env .env
+
+# run initialization script
+npm run init
 
 # development
 npm run start

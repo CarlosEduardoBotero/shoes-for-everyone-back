@@ -40,8 +40,8 @@ export class ExampleController {
     },
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
-  create(@Body() createExampleDto: CreateExampleDto) {
-    return this.exampleService.create(createExampleDto);
+  async create(@Body() createExampleDto: CreateExampleDto) {
+    return await this.exampleService.create(createExampleDto);
   }
 
   @Get()
@@ -55,8 +55,8 @@ export class ExampleController {
       },
     },
   })
-  findAll() {
-    return this.exampleService.findAll();
+  async findAll() {
+    return await this.exampleService.findAll();
   }
 
   @Get(':id')
@@ -69,8 +69,8 @@ export class ExampleController {
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiNotFoundResponse({ description: 'Resource not found' })
-  findOne(@Param('id') id: string) {
-    return this.exampleService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return await this.exampleService.findOne(id);
   }
 
   @Patch(':id')
@@ -83,8 +83,11 @@ export class ExampleController {
   })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiNotFoundResponse({ description: 'Resource not found' })
-  update(@Param('id') id: string, @Body() updateExampleDto: UpdateExampleDto) {
-    return this.exampleService.update(id, updateExampleDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateExampleDto: UpdateExampleDto,
+  ) {
+    return await this.exampleService.update(id, updateExampleDto);
   }
 
   @Delete(':id')
