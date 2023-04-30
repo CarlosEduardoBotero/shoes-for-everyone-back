@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
+import { CreateUserDto } from '../dto/payloads/create-user.dto';
+import { UpdateUserDto } from '../dto/payloads/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { UserResponse } from '../dto/responses/user.response.dto';
 
 @ApiTags('v1')
 @Controller({
@@ -13,7 +14,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserResponse> {
     return await this.usersService.create(createUserDto);
   }
 

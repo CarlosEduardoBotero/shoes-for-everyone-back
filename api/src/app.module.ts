@@ -20,6 +20,7 @@ import { CreateExampleServiceImpl } from './apps/examples/services-impl/example.
 import { GetAllExampleServiceImpl } from './apps/examples/services-impl/example.get-all.service-impl';
 import { GetExampleServiceImpl } from './apps/examples/services-impl/example.get.service-impl';
 import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example.update.service-impl';
+import { AuthModule } from './apps/auth/auth.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example
     TypeOrmModule.forFeature([
       ExampleEntity,
       UserEntity
-    ])
+    ]),
+    AuthModule,
   ],
   controllers: [
     HealthCheckController,

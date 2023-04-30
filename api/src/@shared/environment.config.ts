@@ -5,6 +5,7 @@ dotenv.config();
 export const environment = {
   dataBase: dataBase(),
   corsOptions: corsOptions(),
+  jwtConstants: jwtConstants(),
 };
 
 function dataBase() {
@@ -29,5 +30,12 @@ function corsOptions() {
   return {
     origin: process.env.CORS_ORIGIN || ['http://localhost:3000'],
     methods: 'GET,PATCH,POST',
+  };
+}
+
+function jwtConstants() {
+  return {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN || '36000s',
   };
 }

@@ -7,7 +7,7 @@ import { environment } from './@shared/environment.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // whitelist: true discard all the values which are not in dto
+  // whitelist: true discard all the values which are not in dto. Related with 'class-validator'
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.enableVersioning({
