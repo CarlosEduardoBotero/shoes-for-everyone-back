@@ -10,7 +10,7 @@ export class ValidateLoginServiceImpl {
   async execute(payload: LoginPayloadDto): Promise<UserResponse | undefined> {
     let result = undefined;
     const email = payload.email;
-    const user = await this.usersRepository.findOneBy({ email });
+    const user = await this.usersRepository.findByEmail(email);
 
     if (user && user.password === payload.password) {
       result = user;

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserEntity } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,5 +14,13 @@ export class UsersRepository extends Repository<UserEntity> {
       usersRepository.manager,
       usersRepository.queryRunner,
     );
+  }
+
+  async findByEmail(email: string): Promise<UserEntity> {
+    try {
+      return await this.usersRepository.findOneBy({ email });
+    } catch (EntityNotFoundError) {
+      throw new UnauthorizedException('Não autorizado');
+    }
   }
 }
