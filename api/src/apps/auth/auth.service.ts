@@ -1,31 +1,19 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { LoginPayloadDto } from './dto/payloads/login.dto';
-import { LoginResponseDto } from './dto/responses/login.dto';
 import { mapDataToEncode } from './mappers/data-encode.mapper';
-import { UserResponse } from '../users/dto/responses/user.response.dto';
-import { UsersRepository } from '../users/repositories/users.repository';
+import { LoginPayloadDto } from '../users/dto/payloads/login.dto';
+import { LoginResponseDto } from '../users/dto/responses/login.dto';
+import { ValidateLoginServiceImpl } from '../users/services-impl/user.validate-login.service-impl';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    private readonly validateLoginServiceImpl: ValidateLoginServiceImpl,
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(payload: LoginPayloadDto): Promise<UserResponse | undefined> {
-    let result = undefined;
-    const email = payload.email;
-    const user = await this.usersRepository.findOneBy({ email });
-
-    if (user && user.password === payload.password) {
-      result = user;
-    }
-    return result;
-  }
-
   async login(payload: LoginPayloadDto): Promise<LoginResponseDto> {
-    const user = await this.validateUser(payload);
+    const user = await this.validateLoginServiceImpl.execute(payload);
     if (!user) {
       throw new UnauthorizedException('Não autorizado');
     }

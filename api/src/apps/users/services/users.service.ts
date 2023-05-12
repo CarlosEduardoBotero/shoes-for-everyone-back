@@ -5,6 +5,9 @@ import { CreateUserServiceImpl } from '../services-impl/user.create.service-impl
 import { GetAllUserServiceImpl } from '../services-impl/user.get-all.service-impl';
 import { GetUserServiceImpl } from '../services-impl/user.get.service-impl';
 import { UpdateUserServiceImpl } from '../services-impl/user.update.service-impl';
+import { ValidateLoginServiceImpl } from '../services-impl/user.validate-login.service-impl';
+import { LoginPayloadDto } from '../dto/payloads/login.dto';
+import { UserResponse } from '../dto/responses/user.response.dto';
 
 @Injectable()
 export class UsersService {
@@ -13,6 +16,7 @@ export class UsersService {
     private readonly getAllUserServiceImpl: GetAllUserServiceImpl,
     private readonly getUserServiceImpl: GetUserServiceImpl,
     private readonly updateUserServiceImpl: UpdateUserServiceImpl,
+    private readonly validateLoginServiceImpl: ValidateLoginServiceImpl,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -29,5 +33,11 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     return await this.updateUserServiceImpl.execute(id, updateUserDto);
+  }
+
+  async findByLogin(
+    payload: LoginPayloadDto,
+  ): Promise<UserResponse | undefined> {
+    return await this.validateLoginServiceImpl.execute(payload);
   }
 }

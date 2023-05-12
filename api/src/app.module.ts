@@ -21,6 +21,7 @@ import { GetAllExampleServiceImpl } from './apps/examples/services-impl/example.
 import { GetExampleServiceImpl } from './apps/examples/services-impl/example.get.service-impl';
 import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example.update.service-impl';
 import { AuthModule } from './apps/auth/auth.module';
+import { ValidateLoginServiceImpl } from './apps/users/services-impl/user.validate-login.service-impl';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { AuthModule } from './apps/auth/auth.module';
     GetAllUserServiceImpl,
     GetUserServiceImpl,
     UpdateUserServiceImpl,
+    ValidateLoginServiceImpl,
   ],
 })
 export class AppModule {}

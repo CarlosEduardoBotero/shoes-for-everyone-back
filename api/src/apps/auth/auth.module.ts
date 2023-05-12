@@ -7,6 +7,7 @@ import { environment } from 'src/@shared/environment.config';
 import { UsersRepository } from '../users/repositories/users.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../users/entities/user.entity';
+import { ValidateLoginServiceImpl } from '../users/services-impl/user.validate-login.service-impl';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UserEntity } from '../users/entities/user.entity';
     TypeOrmModule.forFeature([UserEntity]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UsersRepository],
+  providers: [AuthService, UsersRepository, ValidateLoginServiceImpl],
   exports: [PassportModule, JwtModule],
 })
 export class AuthModule {}
