@@ -8,6 +8,7 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { LoginResponseDto } from '../users/dto/responses/login.dto';
+import { Public } from './decorators/public.decorator';
 
 @ApiTags('v1')
 @Controller({
@@ -17,6 +18,7 @@ import { LoginResponseDto } from '../users/dto/responses/login.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post('/login')
   @ApiOperation({ summary: 'Log-in um usuario registrado' })
   @ApiOkResponse({
