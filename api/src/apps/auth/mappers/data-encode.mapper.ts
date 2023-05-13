@@ -3,6 +3,6 @@ import { DataToEncodeDto } from 'src/apps/users/dto/responses/data-encode.dto';
 
 export function mapDataToEncode(user: UserResponse): DataToEncodeDto {
   return {
-    id: user.id,
+    sub: user.id,
   };
 }

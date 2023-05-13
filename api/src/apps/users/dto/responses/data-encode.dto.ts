@@ -1,3 +1,3 @@
 export class DataToEncodeDto {
-  id: string;
+  sub: string;
 }
