@@ -10,7 +10,7 @@ import {
 import { LoginResponseDto } from '../users/dto/responses/login.dto';
 import { Public } from './decorators/public.decorator';
 
-@ApiTags('v1')
+@ApiTags('auth')
 @Controller({
   path: 'auth',
   version: '1',

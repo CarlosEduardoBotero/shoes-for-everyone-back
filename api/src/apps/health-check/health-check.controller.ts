@@ -7,7 +7,9 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+import { Public } from '../auth/decorators/public.decorator';
 
+@Public()
 @ApiTags('health')
 @Controller({
   path: 'health',

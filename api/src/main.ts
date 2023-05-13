@@ -15,12 +15,25 @@ async function bootstrap() {
   });
   // Swagger config
   const config = new DocumentBuilder()
-    .setTitle('Shoes for everyone')
-    .setDescription('Shoes for everyone description')
+    .setTitle(`${environment.siteOptions.title}`)
+    .setDescription(`${environment.siteOptions.description}`)
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'access-token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    customSiteTitle: `${environment.siteOptions.swaggerSiteTitle}`,
+    swaggerOptions: {
+      docExpansion: 'none',
+    },
+  });
 
   app.enableCors(environment.corsOptions);
 
