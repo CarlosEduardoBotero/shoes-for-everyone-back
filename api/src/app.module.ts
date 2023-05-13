@@ -22,6 +22,8 @@ import { GetExampleServiceImpl } from './apps/examples/services-impl/example.get
 import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example.update.service-impl';
 import { AuthModule } from './apps/auth/auth.module';
 import { ValidateLoginServiceImpl } from './apps/users/services-impl/user.validate-login.service-impl';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './apps/auth/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -56,6 +58,10 @@ import { ValidateLoginServiceImpl } from './apps/users/services-impl/user.valida
     GetUserServiceImpl,
     UpdateUserServiceImpl,
     ValidateLoginServiceImpl,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
   ],
 })
 export class AppModule {}

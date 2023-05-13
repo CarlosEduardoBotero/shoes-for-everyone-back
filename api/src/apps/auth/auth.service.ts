@@ -20,7 +20,7 @@ export class AuthService {
     const dataToEncode = mapDataToEncode(user);
 
     return {
-      access_token: this.jwtService.sign(dataToEncode),
+      access_token: await this.jwtService.signAsync(dataToEncode),
     };
   }
 }
