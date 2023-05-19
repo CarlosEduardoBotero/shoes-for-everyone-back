@@ -20,6 +20,10 @@ import { CreateExampleServiceImpl } from './apps/examples/services-impl/example.
 import { GetAllExampleServiceImpl } from './apps/examples/services-impl/example.get-all.service-impl';
 import { GetExampleServiceImpl } from './apps/examples/services-impl/example.get.service-impl';
 import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example.update.service-impl';
+import { AuthModule } from './apps/auth/auth.module';
+import { ValidateLoginServiceImpl } from './apps/users/services-impl/user.validate-login.service-impl';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './apps/auth/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -31,7 +35,8 @@ import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example
     TypeOrmModule.forFeature([
       ExampleEntity,
       UserEntity
-    ])
+    ]),
+    AuthModule,
   ],
   controllers: [
     HealthCheckController,
@@ -52,6 +57,11 @@ import { UpdateExamplerServiceImpl } from './apps/examples/services-impl/example
     GetAllUserServiceImpl,
     GetUserServiceImpl,
     UpdateUserServiceImpl,
+    ValidateLoginServiceImpl,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
   ],
 })
 export class AppModule {}

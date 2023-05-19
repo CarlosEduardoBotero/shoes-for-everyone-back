@@ -21,7 +21,9 @@ import {
   getSchemaPath,
 } from '@nestjs/swagger';
 import { ExampleDto } from './dto/example-dto';
+import { Public } from '../auth/decorators/public.decorator';
 
+@Public()
 @ApiTags('demo')
 @ApiExtraModels(ExampleDto)
 @Controller({

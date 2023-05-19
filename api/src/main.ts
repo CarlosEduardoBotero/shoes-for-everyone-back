@@ -7,7 +7,7 @@ import { environment } from './@shared/environment.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // whitelist: true discard all the values which are not in dto
+  // whitelist: true discard all the values which are not in dto. Related with 'class-validator'
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.enableVersioning({
@@ -15,12 +15,25 @@ async function bootstrap() {
   });
   // Swagger config
   const config = new DocumentBuilder()
-    .setTitle('Shoes for everyone')
-    .setDescription('Shoes for everyone description')
+    .setTitle(`${environment.siteOptions.title}`)
+    .setDescription(`${environment.siteOptions.description}`)
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'access-token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    customSiteTitle: `${environment.siteOptions.swaggerSiteTitle}`,
+    swaggerOptions: {
+      docExpansion: 'none',
+    },
+  });
 
   app.enableCors(environment.corsOptions);
 

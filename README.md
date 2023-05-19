@@ -65,6 +65,7 @@ npm run test:cov
 ```bash
 # CRUD generator:
 npx @nestjs/cli g resource [path/name]
+# Example: npx @nestjs/cli g resource apps/auth
 
 # Generates a new migration file with sql needs to be executed to update schema
 npm run migration:generate src/migrations/example/create-example-table

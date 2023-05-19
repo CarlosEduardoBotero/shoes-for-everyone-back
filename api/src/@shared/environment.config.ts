@@ -5,6 +5,8 @@ dotenv.config();
 export const environment = {
   dataBase: dataBase(),
   corsOptions: corsOptions(),
+  jwtConstants: jwtConstants(),
+  siteOptions: siteOptions(),
 };
 
 function dataBase() {
@@ -29,5 +31,20 @@ function corsOptions() {
   return {
     origin: process.env.CORS_ORIGIN || ['http://localhost:3000'],
     methods: 'GET,PATCH,POST',
+  };
+}
+
+function jwtConstants() {
+  return {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN || '36000s',
+  };
+}
+
+function siteOptions() {
+  return {
+    title: process.env.SITE_TITLE || 'e-commerce API',
+    description: process.env.SITE_DESCRIPTION || 'e-commerce API',
+    swaggerSiteTitle: process.env.SITE_CUSTOM_TITLE || 'Swagger e-commerce',
   };
 }
