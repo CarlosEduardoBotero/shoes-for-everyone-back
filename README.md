@@ -18,6 +18,7 @@ https://api-shoes-ecommerce.onrender.com
 - postgresql - https://www.elephantsql.com/
 - docker
 - render - Cloud Application Hosting
+- JWT
 
 ### 🏁 API Usage
 
