@@ -11,11 +11,6 @@ export class UserEntity {
   })
   email: string;
 
-  @Column({
-    nullable: false,
-  })
-  password: string;
-
   @BeforeInsert()
   private async setId() {
     this.id = `usr_${nanoid(12)}`;
